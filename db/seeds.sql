@@ -1,9 +1,9 @@
 -- Table of Departments
 INSERT INTO departments (id, name)
-VALUES (2, "Engineering"),
+VALUES (1, "Sales"),
+       (2, "Engineering"),
        (3, "Finance"),
-       (4, "Legal"),
-       (1, "Sales");
+       (4, "Legal");
        
 -- Table of Roles
 INSERT INTO roles (id, title, salary, department_id)
@@ -22,7 +22,7 @@ VALUES (1, "John", "Doe", 1, NULL),
        (2, "Mike", "Chan", 2, 1),
        (3, "Ashley", "Rodriguez", 3, NULL),
        (4, "Kevin", "Tupik", 4, 3),
-       (5, "Kunal", "Singh", 5, NULL)
+       (5, "Kunal", "Singh", 5, NULL),
        (6, "Malia", "Brown", 6, 5),
        (7, "Sarah", "Lourd", 7, NULL),
        (8, "Tom", "Allen", 8, 7);
