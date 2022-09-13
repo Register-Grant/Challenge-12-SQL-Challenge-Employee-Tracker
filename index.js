@@ -272,3 +272,58 @@ const addEmployee = () => {
       );
     });
 };
+
+const updateEmployee = () => {
+  (function (err, res) {
+    if (err) {
+      console.log("You might not be the absolute worst...");
+      console.dir(err);
+      return;
+    }
+    console.log(res);
+  });
+  const query = `SELECT employees.last_name, roles.title FROM employees JOIN roles ON employees.role_id = roles.id`;
+  db.query(query, function (err, res) {
+    if (err) throw err;
+    inquirer
+      .prompt([
+        {
+          type: "list",
+          name: "last name",
+          message: "What is the employee's family name?",
+          choices: function () {
+            let lastName = [];
+            for (var i = 0; i < res.length; i++) {
+              lastName.push(res[i].last_name);
+            }
+            return lastName;
+          },
+        },
+        {
+          type: "list",
+          name: "role",
+          message: "What about the new title for said employee?",
+          choices: selectRole(),
+        },
+      ])
+      .then(function (val) {
+        let roleID = selectRole().indexOf(val.role) + 1;
+        db.query(
+          "UPDATE employees SET ? WHERE ?",
+          [
+            {
+              last_name: val.lastName,
+            },
+            {
+              role_id: roleID,
+            },
+          ],
+          function (err) {
+            if (err) throw err;
+            console.table(val);
+            startApp();
+          }
+        );
+      });
+  });
+};
