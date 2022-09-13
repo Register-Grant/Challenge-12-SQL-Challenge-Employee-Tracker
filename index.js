@@ -232,12 +232,12 @@ const addEmployee = () => {
     .prompt([
       {
         type: "input",
-        name: "surname",
+        name: "first_name",
         message: "So what is their surname?",
       },
       {
         type: "input",
-        name: "family name",
+        name: "last_name",
         message: "And their family name?",
       },
       {
@@ -255,7 +255,7 @@ const addEmployee = () => {
     ])
     .then(function (val) {
       const roleID = selectRole().indexOf(val.role) + 1;
-      const managerID = selectManager().indexOf(val.manager) + 1;
+      const managerID = selectManager().indexOf(val.choice) + 1;
       db.query(
         "INSERT INTO employees SET ?",
         {
